@@ -1,9 +1,9 @@
 <?php
-require_once 'DatabaseCreator.php';
+require_once 'dbcreator.php';
 
 $localhost = "localhost";
-$username = "username";
-$password = "password";
+$username = "root";
+$password = " ";
 
 $databaseCreator = new DatabaseCreator($localhost, $username, $password);
 

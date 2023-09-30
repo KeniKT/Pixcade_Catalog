@@ -1,9 +1,9 @@
 <?php
-require_once 'DatabaseCreator.php';
+require_once 'dbcreator.php';
 
 $localhost = "localhost";
-$username = "username";
-$password = "password";
+$username = "root";
+$password = " ";
 
 $databaseCreator = new DatabaseCreator($localhost, $username, $password);
 
@@ -58,7 +58,7 @@ $gameFields = [
     "caption VARCHAR(30) NOT NULL",
     "description TEXT NOT NULL",
     "price DECIMAL(10,2) NOT NULL",
-    "discount DECIMAL(5,2) DEFAULT 0"
+    "discount DECIMAL(5,2) DEFAULT 0",
     "releaseDate DATE NOT NULL",
     "status ENUM ('active', 'inactive', 'pending') NOT NULL",
     "visibility BOOLEAN DEFAULT true NOT NULL",
@@ -102,7 +102,7 @@ $ratingFields = [
 
 ];
 
-$databaseCreator->createTable("rating", $ratingFields);\
+$databaseCreator->createTable("rating", $ratingFields);
 
 $reviewFields = [
     "reviewId INT AUTO_INCREMENT PRIMARY KEY",
