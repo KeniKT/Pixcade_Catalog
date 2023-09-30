@@ -7,7 +7,7 @@ class DatabaseCreator {
     private $databaseName;
     private $conn;
 
-    public function __construct($localhost, $username, $password) {
+    public function __construct($localhost, $username, $password , $databaseName) {
         $this->localhost = $localhost;
         $this->username = $username;
         $this->password = $password;
@@ -16,7 +16,7 @@ class DatabaseCreator {
     }
 
     private function connect() {
-        $this->conn = new mysqli($this->localhost, $this->username);
+        $this->conn = new mysqli($this->localhost, $this->username , $this->databaseName);
 
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
