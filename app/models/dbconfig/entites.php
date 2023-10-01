@@ -2,8 +2,8 @@
 require_once 'dbcreator.php';
 
 $localhost = "localhost";
-$username = "alazar";
-$password = "32120832asdASD!@#";
+$username = "root";
+$password = "";
 $databaseName = "script";
 
 $databaseCreator = new DatabaseCreator($localhost, $username, $password, $databaseName);
@@ -13,6 +13,7 @@ $usersFields = [
     "firstName VARCHAR(30) NOT NULL",
     "lastName VARCHAR(30) NOT NULL",
     "email VARCHAR(50) NOT NULL",
+    "password VARCHAR(50) NOT NULL",
     "dateOfBirth DATE NOT NULL",
     "displayName VARCHAR(50) NOT NULL",
     "userType ENUM ('Developer', 'Gamer') NOT NULL",
