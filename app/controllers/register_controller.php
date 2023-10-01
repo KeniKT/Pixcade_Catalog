@@ -1,5 +1,5 @@
 <?php
-// include('./session.php');
+include('../controllers/session.php');
 
 require_once '../models/dbconfig/dbcreator.php';
 require_once '../models/user.php';

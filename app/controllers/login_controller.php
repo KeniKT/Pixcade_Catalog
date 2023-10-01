@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 require_once '../models/dbconfig/dbcreator.php';
 require_once '../models/user.php';
