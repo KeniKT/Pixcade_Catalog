@@ -2,15 +2,13 @@
 require_once 'dbcreator.php';
 
 $localhost = "localhost";
-$username = "root";
-$password = " ";
-
-$databaseCreator = new DatabaseCreator($localhost, $username, $password);
-
+$username = "alazar";
+$password = "32120832asdASD!@#";
 $databaseName = "script";
 
-$databaseCreator->createDatabase($databaseName);
+$databaseCreator = new DatabaseCreator($localhost, $username, $password, $databaseName);
+
+$databaseCreator->createDatabase();
 
 $databaseCreator->closeConnection();
-
 ?>

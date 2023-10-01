@@ -2,10 +2,11 @@
 require_once 'dbcreator.php';
 
 $localhost = "localhost";
-$username = "root";
-$password = " ";
+$username = "alazar";
+$password = "32120832asdASD!@#";
+$databaseName = "script";
 
-$databaseCreator = new DatabaseCreator($localhost, $username, $password);
+$databaseCreator = new DatabaseCreator($localhost, $username, $password, $databaseName);
 
 $usersFields = [
     "userId INT AUTO_INCREMENT PRIMARY KEY",
@@ -15,12 +16,11 @@ $usersFields = [
     "dateOfBirth DATE NOT NULL",
     "displayName VARCHAR(50) NOT NULL",
     "userType ENUM ('Developer', 'Gamer') NOT NULL",
-    "externalLink VARCHAR(100) NOT NULL",
-    "profileText TEXT NOT NULL",
+    "externalLink VARCHAR(100)",
+    "profileText TEXT",
 ];
 
 $databaseCreator->createTable("users", $usersFields);
-
 
 $tagFields = [
     "tagId INT AUTO_INCREMENT PRIMARY KEY",
@@ -28,14 +28,13 @@ $tagFields = [
 
 $databaseCreator->createTable("tag", $tagFields);
 
-$descriptorsFields = [
+$descriptorFields = [
     "descriptorId INT AUTO_INCREMENT PRIMARY KEY",
     "name VARCHAR(50) NOT NULL",
-    "description TEXT NOT NULL",
-   
+    "description TEXT",
 ];
 
-$databaseCreator->createTable("descriptor", $descriptorsFields);
+$databaseCreator->createTable("descriptor", $descriptorFields);
 
 $genreFields = [
     "genreId INT AUTO_INCREMENT PRIMARY KEY",
@@ -43,14 +42,11 @@ $genreFields = [
 
 $databaseCreator->createTable("genre", $genreFields);
 
-
 $platformFields = [
     "platformId INT AUTO_INCREMENT PRIMARY KEY",
 ];
 
 $databaseCreator->createTable("platform", $platformFields);
-
-
 
 $gameFields = [
     "gameId INT AUTO_INCREMENT PRIMARY KEY",
@@ -62,76 +58,66 @@ $gameFields = [
     "releaseDate DATE NOT NULL",
     "status ENUM ('active', 'inactive', 'pending') NOT NULL",
     "visibility BOOLEAN DEFAULT true NOT NULL",
-    
-    "FOREIGN KEY (genreId) REFERENCES genre(genraId)",
-    "FOREIGN KEY (developerId) REFERENCES descriptor(descriptorId)",
-    
+    "genreId INT, FOREIGN KEY (genreId) REFERENCES genre(genreId)",
+    "developerId INT, FOREIGN KEY (developerId) REFERENCES descriptor(descriptorId)",
 ];
 
 $databaseCreator->createTable("game", $gameFields);
 
-$wish_listFields = [
-    "wishListId INT AUTO_INCREMENT PRIMARY KEY",
-    "FOREIGN KEY (userId) REFERENCES user(userId)"
+$wishlistFields = [
+    "wishlistId INT AUTO_INCREMENT PRIMARY KEY",
+    "userId INT, FOREIGN KEY (userId) REFERENCES users(userId)",
 ];
 
-$databaseCreator->createTable("wish_list", $wish_listFields);
+$databaseCreator->createTable("wishlist", $wishlistFields);
 
-$wish_list_itemFields = [
-    "wishListItemId INT AUTO_INCREMENT PRIMARY KEY",
-    "FOREIGN KEY (wishListId) REFERENCES wish_list(wishListId)",
-    "FOREIGN KEY (gameId) REFERENCES game(gameId)",
-
+$wishlistItemFields = [
+    "wishlistItemId INT AUTO_INCREMENT PRIMARY KEY",
+    "wishlistId INT, FOREIGN KEY (wishlistId) REFERENCES wishlist(wishlistId)",
+    "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
 ];
 
-$databaseCreator->createTable("wish_list_item", $wish_list_itemFields);
+$databaseCreator->createTable("wishlist_item", $wishlistItemFields);
 
 $releaseFields = [
     "releaseId INT AUTO_INCREMENT PRIMARY KEY",
-    "FOREIGN KEY (userId) REFERENCES user(userId)",
-    "FOREIGN KEY (gameId) REFERENCES game(gameId)",
-
+    "userId INT, FOREIGN KEY (userId) REFERENCES users(userId)",
+    "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
 ];
 
 $databaseCreator->createTable("release", $releaseFields);
 
 $ratingFields = [
     "ratingId INT AUTO_INCREMENT PRIMARY KEY",
-    "FOREIGN KEY (userId) REFERENCES user(userId)",
-    "FOREIGN KEY (gameId) REFERENCES game(gameId)",
-
+    "userId INT, FOREIGN KEY (userId) REFERENCES users(userId)",
+    "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
 ];
 
 $databaseCreator->createTable("rating", $ratingFields);
 
 $reviewFields = [
     "reviewId INT AUTO_INCREMENT PRIMARY KEY",
-    "FOREIGN KEY (userId) REFERENCES user(userId)",
-    "FOREIGN KEY (gameId) REFERENCES game(gameId)",
-
+    "userId INT, FOREIGN KEY (userId) REFERENCES users(userId)",
+    "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
 ];
 
 $databaseCreator->createTable("review", $reviewFields);
 
-$game_platformFields = [
-    "gameplatformId INT AUTO_INCREMENT PRIMARY KEY",
-    "FOREIGN KEY (userId) REFERENCES user(userId)",
-    "FOREIGN KEY (platformId) REFERENCES platform(platformId)",
-
+$gamePlatformFields = [
+    "gamePlatformId INT AUTO_INCREMENT PRIMARY KEY",
+    "userId INT, FOREIGN KEY (userId) REFERENCES users(userId)",
+    "platformId INT, FOREIGN KEY (platformId) REFERENCES platform(platformId)",
 ];
 
-$databaseCreator->createTable("game_platform", $game_platformFields);
+$databaseCreator->createTable("game_platform", $gamePlatformFields);
 
-
-$game_tagFields = [
-    "gametagId INT AUTO_INCREMENT PRIMARY KEY",
-    "FOREIGN KEY (gameId) REFERENCES game(gameId)",
-    "FOREIGN KEY (tagId) REFERENCES tag(tagId)",
-
+$gameTagFields = [
+    "gameTagId INT AUTO_INCREMENT PRIMARY KEY",
+    "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
+    "tagId INT, FOREIGN KEY (tagId) REFERENCES tag(tagId)",
 ];
 
-$databaseCreator->createTable("game_tag", $game_tagFields);
-
+$databaseCreator->createTable("game_tag", $gameTagFields);
 
 $databaseCreator->closeConnection();
 ?>

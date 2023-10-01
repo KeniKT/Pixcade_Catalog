@@ -1,5 +1,4 @@
 <?php
-
 class DatabaseCreator {
     private $localhost;
     private $username;
@@ -7,33 +6,33 @@ class DatabaseCreator {
     private $databaseName;
     private $conn;
 
-    public function __construct($localhost, $username, $password , $databaseName) {
+    public function __construct($localhost, $username, $password, $databaseName) {
         $this->localhost = $localhost;
         $this->username = $username;
         $this->password = $password;
-        $this->databaseName = $databaseName;
+        $this->databaseName = $databaseName; 
         $this->connect();
     }
 
     private function connect() {
-        $this->conn = new mysqli($this->localhost, $this->username , $this->databaseName);
+        $this->conn = new mysqli($this->localhost, $this->username, $this->password);
 
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
     }
 
-    public function createDatabase($databaseName) {
-        $sql = "CREATE DATABASE IF NOT EXISTS $databaseName";
+    public function createDatabase() {
+        $sql = "CREATE DATABASE IF NOT EXISTS $this->databaseName";
         if ($this->conn->query($sql) === true) {
-            echo "Database $databaseName created successfully";
+            echo "Database $this->databaseName created successfully";
         } else {
             echo "Error creating database: " . $this->conn->error;
         }
     }
 
     public function createTable($tableName, $fields) {
-        $this-> conn -> select_db($databaseName);
+        $this->conn->select_db($this->databaseName);
         $sql = "CREATE TABLE $tableName (";
         $sql .= implode(", ", $fields);
         $sql .= ")";
@@ -48,5 +47,4 @@ class DatabaseCreator {
         $this->conn->close();
     }
 }
-
 ?>
