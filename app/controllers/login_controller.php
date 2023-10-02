@@ -1,42 +1,40 @@
 <?php
-session_start();
+class UserController
+{
 
-require_once '../models/dbconfig/dbcreator.php';
-require_once '../models/user.php';
-require_once '../controllers/authentication_controller.php';
+    public static function getUserByEmail($databaseCreator, $email)
+    {
+        $conn = $databaseCreator->getConnection();
+
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
 
 
-$localhost = "localhost";
-$username = "root";
-$password = "";
-$databaseName = "script";
+            $user = new User(
+                $row['firstName'],
+                $row['lastName'],
+                $row['email'],
+                $row['password'],
+                $row['dateOfBirth'],
+                $row['displayName'],
+                $row['userType'],
+                $row['externalLink'],
+                $row['profileText']
+            );
 
-$databaseCreator = new DatabaseCreator($localhost, $username, $password, $databaseName);
+            $user->setId($row['userId']);
 
-$errorMsg = ""; // This is for the error message after the login attempt
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    $user = UserController::getUserByEmail($databaseCreator, $email);
-
-    if ($user) {
-        if (password_verify($password, $user->getPassword())) {
-            $_SESSION["user_id"] = $user->getId();
-            $_SESSION["user_email"] = $user->getEmail();
-            // Redirect the user to a dashboard or another page
-            header("Location: ./index.html");
-            exit;
+            return $user;
         } else {
-            $errorMsg = "Incorrect password.";
+            return null;
         }
-    } else {
-        $errorMsg = "User not found.";
     }
 }
-
-$databaseCreator->closeConnection();
-include('../views/login_form.html');
 ?>
 
