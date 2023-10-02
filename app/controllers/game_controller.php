@@ -1,17 +1,19 @@
 
 <?php
 
+require_once '../models/game.php';
 
 
 class GameController
 {
-    private $gameClass;
-    private $db;
+    private $localhost = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $databaseName = "script";
 
-    public function __construct(Game $gameClass, DatabaseCreator $db)
-    {
-        $this->gameClass = $gameClass;
-    }
+    private $db = new DatabaseCreator($localhost, $username, $password, $databaseName);
+
+
 
     public function index()
     {
@@ -34,6 +36,41 @@ class GameController
 
         return $this->serialize($game);
     }
+
+    public function createGame()
+    {
+        if($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+            $id=$_POST["id"];
+            $title=$_POST["title"];
+            $caption=$_POST["caption"];
+            $description=$_POST["discription"];
+            $price=$_POST["price"];
+            $discount=$_POST["discount"];
+            $releaseDate=$_POST["releaseDate"];
+            $status=$_POST["status"];
+            $visibility=$_POST["visibility"];
+            $genreId=$_POST["genreId"];
+            $developerId=$_POST["developerId"];
+        }
+        $game = new Game($id,$title, $caption, $description, $price, $discount,$releaseDate,$status,$visibility,$genreId,$developerId);
+        $sql = 'INSERT INTO games (gameId, title, caption, description, price, discount, releaseDate, status, visibility, genreId, developerId) VALUES (:gameId, :title, :caption, :description, :price, :discount, :releaseDate, :status, :visibility, :genreId, :developerId)';
+        $this->db->query(
+        $sql, [
+            ':gameId' => $game->getId(),
+            ':title' => $game->getTitle(),
+            ':caption' => $game->getCaption(),
+            ':description' => $game->getDescription(),
+            ':price' => $game->getPrice(),
+            ':discount' => $game->getDiscount(),
+            ':releaseDate' => $game->getReleaseDate(),
+            ':status' => $game->getStatus(),
+            ':visibility' => $game->getVisibility(),
+            ':genreId' => $game->getGenreId(),
+            ':developerId' => $game->getUserId(),
+            ] );
+    }
+
     private function serialize($game)
     {
         return [
@@ -51,5 +88,6 @@ class GameController
         ];
     }
 }
+
 
 ?>
