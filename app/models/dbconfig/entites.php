@@ -12,7 +12,7 @@ $usersFields = [
     "userId INT AUTO_INCREMENT PRIMARY KEY",
     "firstName VARCHAR(30) NOT NULL",
     "lastName VARCHAR(30) NOT NULL",
-    "email VARCHAR(50) NOT NULL",
+    "email VARCHAR(50) NOT NULL UNIQUE",
     "password VARCHAR(50) NOT NULL",
     "dateOfBirth DATE NOT NULL",
     "displayName VARCHAR(50) NOT NULL",
