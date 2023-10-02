@@ -90,6 +90,7 @@ $databaseCreator->createTable("releases", $releaseFields);
 
 $ratingFields = [
     "ratingId INT AUTO_INCREMENT PRIMARY KEY",
+    "ratingValue FLOAT NOT NULL",
     "userId INT, FOREIGN KEY (userId) REFERENCES users(userId)",
     "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
 ];
