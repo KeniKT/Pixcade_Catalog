@@ -60,7 +60,7 @@ $gameFields = [
     "status ENUM ('active', 'inactive', 'pending') NOT NULL",
     "visibility BOOLEAN DEFAULT true NOT NULL",
     "genreId INT, FOREIGN KEY (genreId) REFERENCES genre(genreId)",
-    "developerId INT, FOREIGN KEY (developerId) REFERENCES descriptor(descriptorId)",
+    "developerId INT, FOREIGN KEY (developerId) REFERENCES users(userId)",
 ];
 
 $databaseCreator->createTable("game", $gameFields);
@@ -86,10 +86,11 @@ $releaseFields = [
     "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
 ];
 
-$databaseCreator->createTable("release", $releaseFields);
+$databaseCreator->createTable("releases", $releaseFields);
 
 $ratingFields = [
     "ratingId INT AUTO_INCREMENT PRIMARY KEY",
+    "ratingValue FLOAT NOT NULL",
     "userId INT, FOREIGN KEY (userId) REFERENCES users(userId)",
     "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
 ];

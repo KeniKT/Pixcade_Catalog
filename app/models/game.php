@@ -13,6 +13,7 @@ class Game
     private $genreId;
     private $userId;
     function __construct(
+        $id,
         $title,
         $caption,
         $description,
@@ -24,6 +25,7 @@ class Game
         $genreId,
         $userId
     ) {
+        $this->id = $id;
         $this->title = $title;
         $this->caption = $caption;
         $this->description = $description;
