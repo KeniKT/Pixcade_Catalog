@@ -2,6 +2,7 @@
     margin: 0%;
     padding: 0%;
     font-family: "Lato";
+    font-weight: 100;
 }
 
 .logo {
@@ -13,32 +14,72 @@
 }
 
 header {
+    align-self: center;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: row; */
     align-items: center;
+    justify-content: space-between;
     background-color: #252E36;
     padding: 2%;
-    border-bottom: 5px solid #E1AF64;
+    border-bottom: 3px solid #E1AF64;
 }
 
 .main-body {
     background-color: #252E36;
     padding: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 2%;
     margin-bottom: 2%;
+}
+
+
+.search-bar {
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+
+}
+
+#profile-header-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+#profile-image {
+    width: 50px;
+    padding-right: 10px;
+}
+
+.bar {
+    width: 1px;
+    background-color: #E6F3F6;
+    height: 45px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .button {
     width: 30%;
     background-color: #E1AF64;
+}
+
+#search-button {
+    width: 50px;
+    height: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 input {
@@ -54,19 +95,99 @@ input {
 
 }
 
-select {
+#search-bar-input {
+    height: 45px;
+    width: 80%;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.date-picker {
+    display: flex;
+}
+
+#account-type-select {
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
     border-width: 0px;
     background-color: #E6F3F6;
     height: 45px;
-    width: 52%;
+    width: 54%;
     padding-left: 20px;
+    padding-right: 20px;
 }
 
-.date-picker {
+a {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #E1AF64;
+}
+
+
+/** Game add style **/
+.game_add_body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #252E36;
+    padding: 5%;
+    margin: 2% 5%;
+}
+
+.game_add_body form {
+    width: 100%;
+    height: 100%;
+}
+
+.game_add_body form .game_add_form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+    padding: 0 50px;
+    gap: 7px;
+}
+
+.game_add_body form .game_add_form .game_add_input {
+    border-radius: 5px;
+    background-color: #E6F3F6;
+    height: 30px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.game_add_text_button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.game_add_text {
+    color: white;
+    font-size: 14px;
+}
+
+.game_add_button {
+    width: 40px;
+    padding: 5px;
+    background-color: #E1AF64;
+    border: 1px solid #E1AF64;
+    border-radius: 5px;
+}
+
+.upload_buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #E1AF64;
 }
 
 

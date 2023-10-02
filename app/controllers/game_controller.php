@@ -42,6 +42,31 @@ class GameController
         return $this->serialize($games);
     }
 
+    public function genre_filter()
+    {
+        $sql = 'SELECT * FROM games WHERE genreId = (SELECT genreId FROM genre WHERE genreId = :genreId)';
+
+        $games = $this->db->query($sql);
+
+        return $this->serialize($games);
+    }
+
+    public function platform_filter()
+    {
+        $sql = 'SELECT * FROM games WHERE developerId =(select userId from user where userId =(select platformId from game_platform where platformId = :platformId))';
+
+        $games = $this->db->query($sql);
+
+        return $this->serialize($games);
+    }
+    public function rating_filter()
+    {
+        $sql = 'SELECT * FROM games WHERE gameId = (SELECT gameId FROM rating WHERE gameId = :gameId)';
+
+        $games = $this->db->query($sql);
+
+        return $this->serialize($games);
+    }
     public function show($id)
     {
         $sql = 'SELECT * FROM games WHERE gameId = :id';
