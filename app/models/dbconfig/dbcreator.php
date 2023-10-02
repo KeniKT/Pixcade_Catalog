@@ -11,10 +11,10 @@ class DatabaseCreator {
         $this->username = $username;
         $this->password = $password;
         $this->databaseName = $databaseName;
-        $this->connect();
+        $this->getConnection();
     }
 
-    private function connect() {
+    public function getConnection() {
         $this->conn = new mysqli($this->localhost, $this->username, $this->password, $this->databaseName);#when you create the database first time remove $this->database from the arguments passed then after creating the database put it back
 
         if ($this->conn->connect_error) {

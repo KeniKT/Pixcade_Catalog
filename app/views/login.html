@@ -12,10 +12,11 @@
         <img class = "logo" src="../../public/assets/images/logos/Group 3.png">
     </header>
     <div class = "main-body">
-        <form action="">
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <input class = "button" type="submit" value="Sign-in">
+        <form action="../controllers/login_form.php" method="POST">
+            <input name="email" type="text" placeholder="Email">
+            <input name="password" type="password" placeholder="Password">
+            
+            <input class="button" type="submit" value="Sign-in">
         </form>
     </div>
 </body>

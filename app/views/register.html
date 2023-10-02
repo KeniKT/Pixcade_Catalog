@@ -12,17 +12,17 @@
         <img class = "logo" src="../../public/assets/images/logos/Group 3.png">
     </header>
     <div class = "main-body">
-        <form action="">
+        <form action="" method="POST">
             <h2 class="header-title">Welcome!</h2>
-            <input type="text" placeholder="First Name">
-            <input type="password" placeholder="Last Name">
-            <input type="text" placeholder="Display Name">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <input type="date" placeholder="Date">
-            <select id="account-type-select" placeholder="Email">
-                <option value="1">Developer</option>
-                <option value="2">Gamer</option>
+            <input name="first_name" type="text" placeholder="First Name">
+            <input name="last_name" type="password" placeholder="Last Name">
+            <input name="displayName" type="text" placeholder="Display Name">
+            <input name="email" type="email" placeholder="Email">
+            <input name="password" type="password" placeholder="Password">
+            <input name="dateOfBirth" type="date" placeholder="Date">
+            <select name="userType" id="account-type-select" placeholder="Email">
+                <option value="Developer">Developer</option>
+                <option value="Gamer">Gamer</option>
             </select>
             <input class = "button" type="submit" value="Sign-up">
         </form>

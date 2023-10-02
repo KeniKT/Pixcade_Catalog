@@ -3,7 +3,6 @@
 
 require_once '../models/game.php';
 
-
 class GameController
 {
     private $localhost = "localhost";
@@ -12,8 +11,6 @@ class GameController
     private $databaseName = "script";
 
     private $db = new DatabaseCreator($localhost, $username, $password, $databaseName);
-
-
 
     public function index()
     {

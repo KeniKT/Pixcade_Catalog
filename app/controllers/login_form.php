@@ -8,8 +8,8 @@ require_once '../controllers/release_controller.php';
 
 
 $localhost = "localhost";
-$username = "alazar";
-$password = "32120832asdASD!@#";
+$username = "root";
+$password = "";
 $databaseName = "script";
 
 $databaseCreator = new DatabaseCreator($localhost, $username, $password, $databaseName);
@@ -51,6 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $databaseCreator->closeConnection();
-include('../views/login_form.html');
+include('../views/login.html');
 ?>
 

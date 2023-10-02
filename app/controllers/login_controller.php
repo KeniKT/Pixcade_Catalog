@@ -15,7 +15,6 @@ class UserController
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
-
             $user = new User(
                 $row['firstName'],
                 $row['lastName'],

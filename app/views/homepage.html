@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Pixcade</title>
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../../public/css/style.css">
 </head>
@@ -11,15 +11,16 @@
     <header>
         <img class="logo" src="../../public/assets/images/logos/Group 3.png">
         <div class="bar"></div>
-        <form class="search-bar" action="">
+        <form class="search-bar" action="../controllers/game_controller.php" method="POST">
             <input id="search-bar-input" type="search " placeholder="Search">
-            <input class="button" id="search-button" type="submit" value="Go">
+            <input name="go-button" class="button" id="search-button" type="submit" value="Go">
         </form>
         <div class="bar"></div>
         <div id="profile-header-section">
             <img id="profile-image" src="../../public/assets/images/logos/Rectangle 25.png">
             <div id="profile-link">
-                <a href="">Welcome, User</a>    
+                <a href="">Welcome, User</a>
+                <a id="logout-link" href="">Logout</a>
             </div>
         </div>
     </header>
