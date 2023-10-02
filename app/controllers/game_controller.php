@@ -24,6 +24,24 @@ class GameController
         return $this->serialize($games);
     }
 
+    public function sort()
+    {
+        $sql = 'SELECT * FROM games ORDER BY releaseDate DESC';
+
+        $games = $this->db->query($sql);
+
+        return $this->serialize($games);
+    }
+
+    public function search($input_text)
+    {
+        $sql = 'SELECT * FROM games Where title like "%'.$input_text.'%"';
+
+        $games = $this->db->query($sql);
+
+        return $this->serialize($games);
+    }
+
     public function show($id)
     {
         $sql = 'SELECT * FROM games WHERE gameId = :id';
