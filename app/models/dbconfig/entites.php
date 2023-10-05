@@ -16,6 +16,7 @@ $usersFields = [
     "password VARCHAR(50) NOT NULL",
     "dateOfBirth DATE NOT NULL",
     "displayName VARCHAR(50) NOT NULL",
+    "profilePicture VARCHAR(100)",
     "userType ENUM ('Developer', 'Gamer') NOT NULL",
     "externalLink VARCHAR(100)",
     "profileText TEXT",
@@ -54,11 +55,8 @@ $gameFields = [
     "title VARCHAR(50) NOT NULL",
     "caption VARCHAR(30) NOT NULL",
     "description TEXT NOT NULL",
-    "price DECIMAL(10,2) NOT NULL",
-    "discount DECIMAL(5,2) DEFAULT 0",
     "releaseDate DATE NOT NULL",
-    "status ENUM ('active', 'inactive', 'pending') NOT NULL",
-    "visibility BOOLEAN DEFAULT true NOT NULL",
+    "banner VARCHAR(100)",
     "genreId INT, FOREIGN KEY (genreId) REFERENCES genre(genreId)",
     "developerId INT, FOREIGN KEY (developerId) REFERENCES users(userId)",
 ];
@@ -120,6 +118,14 @@ $gameTagFields = [
 ];
 
 $databaseCreator->createTable("game_tag", $gameTagFields);
+
+$screenshotFields = [
+    "screenshotID INT AUTO_INCREMENT PRIMARY KEY",
+    "image VARCHAR(100) NOT NULL",
+    "gameId INT, FOREIGN KEY (gameId) REFERENCES game(gameId)",
+];
+
+$databaseCreator->createTable("screenshot", $screenshotFields);
 
 $databaseCreator->closeConnection();
 ?>

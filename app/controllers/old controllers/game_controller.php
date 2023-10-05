@@ -1,4 +1,3 @@
-
 <?php
 
 require_once '../models/game.php';
