@@ -19,9 +19,15 @@ $password = $_POST['password'];
 $dateOfBirth = $_POST['dateOfBirth'];
 $userType = $_POST['userType'];
 
-$sql = "INSERT INTO users (first_name, last_name, displayName, email, password, dateOfBirth, userType) VALUES ('$first_name', '$last_name', '$displayName', '$email', '$password', '$dateOfBirth', '$userType')";
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+$sql = "INSERT INTO users (firstName, lastName, displayName, email, password, dateOfBirth, userType) VALUES ('$first_name', '$last_name', '$displayName', '$email', '$hashedPassword', '$dateOfBirth', '$userType')";
 
+if (mysqli_query($conn, $sql)) {
+    header("Location: ../views/login.php");
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
 
 mysqli_close($conn);
 ?>

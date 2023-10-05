@@ -13,7 +13,7 @@ $usersFields = [
     "firstName VARCHAR(30) NOT NULL",
     "lastName VARCHAR(30) NOT NULL",
     "email VARCHAR(50) NOT NULL UNIQUE",
-    "password VARCHAR(50) NOT NULL",
+    "password VARCHAR(255) NOT NULL",
     "dateOfBirth DATE NOT NULL",
     "displayName VARCHAR(50) NOT NULL",
     "profilePicture VARCHAR(100)",

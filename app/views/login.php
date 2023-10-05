@@ -17,7 +17,7 @@
         <div class="h2-center">
             <h2>Welcome Back!</h2>
         </div>
-        <form action="../controllers/login_form.php" method="POST">
+        <form action="../controllers/login_controller.php" method="POST">
             <input name="email" type="text" placeholder="Email">
             <input name="password" type="password" placeholder="Password">
             
